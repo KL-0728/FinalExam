@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const headerHTML = `
         <div class="header-inner">
             <div class="logo">
-                <a href="../index.html">
-                    <img src="../img/out/Logo.jpg" alt="Dingnow Logo">
+                <a href="index.html">
+                    <img src="img/out/Logo.jpg" alt="Dingnow Logo">
                 </a>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="搜尋商品...">
             </div>
             <nav class="nav-links">
-                <a href="../pages/market.html">購物車</a>
+                <a href="pages/market.html">購物車</a>
                 <a onclick="openModal()" style="cursor: pointer;">帳號</a>
             </nav>
         </div>
@@ -76,7 +76,7 @@ function getViewContainer() {
 // --- 顯示登入畫面 ---
 function showLoginView() {
     getViewContainer().innerHTML = `
-        <img src="../img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
+        <img src="img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
         <div class="modal-welcome">Welcome Back</div>
         <div class="modal-title">會員登入</div>
         
@@ -111,7 +111,7 @@ function showLoginView() {
 // --- 顯示註冊畫面 ---
 function showRegisterView() {
     getViewContainer().innerHTML = `
-        <img src="../img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
+        <img src="img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
         <div class="modal-title">註冊新會員</div>
         
         <form onsubmit="handleAction('註冊成功', event)">
@@ -144,7 +144,7 @@ function showRegisterView() {
 // --- 顯示忘記密碼畫面 ---
 function showForgotView() {
     getViewContainer().innerHTML = `
-        <img src="../img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
+        <img src="img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
         <div class="modal-title">找回密碼</div>
         <div style="color: #666; margin-bottom: 20px; font-size: 13px; text-align: center;">請輸入註冊時的 Email，我們將寄送重設連結給您。</div>
 
@@ -168,7 +168,7 @@ function showForgotView() {
 // --- 顯示訂閱電子報畫面 (置中 + 下次再說按鈕) ---
 function showSubscribeView() {
     getViewContainer().innerHTML = `
-        <img src="../img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
+        <img src="img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
         <div class="modal-title">訂閱電子報</div>
         
         <div style="color: #666; margin-bottom: 20px; font-size: 14px; text-align: center;">
@@ -221,7 +221,7 @@ function showInfoView(type) {
     }
     
     getViewContainer().innerHTML = `
-        <img src="../img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
+        <img src="img/out/Logo.jpg" class="modal-logo-img" alt="Logo">
         <div class="modal-title">${title}</div>
         
         <div style="text-align: center; line-height: 1.8; color: #555; font-size: 15px; padding: 0 20px; margin-bottom: 30px;">
@@ -272,62 +272,3 @@ function filterItems(range, event) {
         else if(range === '4-6') c.style.display = (id >= 4 && id <= 6) ? 'block' : 'none';
     });
 }
-
-// ==========================================
-//  購物車功能
-// ==========================================
-
-//數量增減功能
-function changeQty(btn, change) {
-    const qtySpan = btn.parentElement.querySelector('.qty-val');
-    let currentQty = parseInt(qtySpan.innerText);
-    
-    currentQty += change;
-    if (currentQty < 0) currentQty = 0;
-    
-    qtySpan.innerText = currentQty;
-    updateTotal(); // 數量改變後，重新計算價格
-}
-
-//計算總金額
-function updateTotal() {
-    // 安全檢查：如果現在頁面上找不到「運費選單」，代表不是購物車頁面，直接結束
-    const shippingSelect = document.getElementById('shipping-method');
-    if (!shippingSelect) return; 
-
-    let totalSubtotal = 0;
-    const items = document.querySelectorAll('.item-card');
-
-    items.forEach(item => {
-        const price = parseInt(item.getAttribute('data-price'));
-        const qty = parseInt(item.querySelector('.qty-val').innerText);
-        totalSubtotal += price * qty;
-    });
-
-    const shipping = parseInt(shippingSelect.value);
-    const finalTotal = totalSubtotal > 0 ? (totalSubtotal + shipping) : 0;
-
-    // 更新介面
-    document.getElementById('subtotal').innerText = `$${totalSubtotal.toLocaleString()}`;
-    document.getElementById('grand-total').innerText = `$${finalTotal.toLocaleString()}`;
-}
-
-// 結帳按鈕
-function processCheckout() {
-    const currentTotal = document.getElementById('grand-total').innerText;
-    // 去掉 $ 符號與逗號來判斷數值
-    const numTotal = parseInt(currentTotal.replace(/[$,]/g, ''));
-
-    if (numTotal === 0) {
-        alert('購物車目前是空的，請先挑選商品！');
-    } else {
-        alert('進入支付流程，總金額為：' + currentTotal);
-        // 這裡之後可以寫跳轉到結帳頁面的程式碼
-        // location.href = 'checkout.html';
-    }
-}
-
-//初始化：當頁面載入完成後，執行一次計算
-document.addEventListener("DOMContentLoaded", function() {
-    updateTotal();
-});
