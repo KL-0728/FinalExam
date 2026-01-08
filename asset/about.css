@@ -1,0 +1,97 @@
+/* 基礎設定 */
+:root {
+--bg-color: #f4f4f4;
+--text-main: #333;
+--text-sec: #555;
+--white: #ffffff;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+background-color: var(--bg-color);
+line-height: 1.8;
+color: var(--text-main);
+padding: 40px 20px;
+}
+
+header {
+text-align: center;
+margin-bottom: 50px;
+}
+
+header h1 {
+font-size: 2rem;
+letter-spacing: 2px;
+color: #2c3e50;
+}
+
+/* 列表容器 */
+.container {
+max-width: 900px;
+margin: 0 auto;
+}
+
+/* 單行區塊設計 */
+.member-card {
+background-color: var(--white);
+margin-bottom: 30px;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+display: flex; /* 左右排列 */
+overflow: hidden; /* 確保圓角不被背景色蓋住 */
+transition: transform 0.3s ease;
+min-height: 200px; /* 確保卡片有一定高度 */
+}
+
+.member-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 左側：直式名字區 */
+.name-col {
+flex: 0 0 80px; /* 固定寬度 */
+display: flex;
+align-items: center;     /* 垂直置中 */
+justify-content: center; /* 水平置中 */
+color: white;
+font-size: 1.5rem;
+font-weight: bold;
+
+/* 關鍵：文字直排設定 */
+writing-mode: vertical-rl; 
+text-orientation: upright; /* 讓字體正立 */
+letter-spacing: 8px;       /* 字距拉開一點比較好看 */
+user-select: none;         /* 防止選取文字 */
+}
+
+/* 右側：心得內容區 */
+.content-col {
+flex: 1;
+padding: 30px 40px;
+display: flex;
+flex-direction: column;
+justify-content: center; /* 內容垂直置中 */
+}
+
+.content-col p {
+margin-bottom: 15px;
+text-align: justify;
+color: var(--text-sec);
+}
+
+.content-col p:last-child {
+margin-bottom: 0;
+}
+
+/* 各組員配色 (背景色) */
+.bg-yang { background-color: #dd7b0be2; }
+.bg-leng { background-color: #ff0000; }
+.bg-dai  { background-color: #000000; }
+.bg-li   { background-color: #9b1dd1; }

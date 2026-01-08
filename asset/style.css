@@ -1,0 +1,313 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+    background-color: #f6f6f6;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+header {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    max-width: 1300px; 
+    margin: auto;
+    padding: 15px 24px; 
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    flex: 0 0 250px; 
+}
+
+.logo img {
+    height: 65px; 
+    display: block;
+    transition: 0.3s;
+}
+
+.search-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box input {
+    width: 350px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.nav-links {
+    flex: 0 0 250px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.nav-links a { cursor: pointer; }
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #fff;
+    width: 450px;
+    height: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.modal-logo-img { height: 60px; margin: 0 auto 15px; display: block; }
+.modal-welcome { font-style: italic; color: #666; margin-bottom: 5px; }
+.modal-title { font-size: 18px; margin-bottom: 25px; font-weight: bold; }
+.form-group { margin-bottom: 15px; text-align: left; display: flex; align-items: center; }
+.form-group label { width: 80px; font-size: 14px; }
+.form-group input { flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 8px 5px; outline: none; }
+.form-options { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; font-size: 13px; }
+.btn-submit { border: 1px solid #333; padding: 6px 20px; background: #fff; cursor: pointer; transition: 0.2s; }
+.btn-submit:hover { background: #222; color: #fff; }
+.modal-actions { display: flex; gap: 10px; margin-top: 15px; }
+.modal-actions button { flex: 1; padding: 10px; background: #fff; border: 1px solid #333; cursor: pointer; font-size: 13px; }
+.success-message { font-size: 22px; font-weight: bold; color: #28a745; }
+
+.hero { max-width: 1200px; margin: 32px auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.hero img { width: 100%; height: 350px; object-fit: cover; }
+
+.filter-bar { max-width: 1200px; margin: 20px auto; padding: 0 24px; display: flex; gap: 15px; justify-content: center; }
+.filter-btn { padding: 10px 25px; border: 1px solid #ccc; background: #fff; border-radius: 30px; cursor: pointer; font-size: 14px; }
+.filter-btn.active { background: #222; color: #fff; }
+
+.section { max-width: 1200px; margin: 48px auto; padding: 0 24px; }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+.product-card { 
+    background: #fff; 
+    border-radius: 12px; 
+    padding: 20px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: 0.3s;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.product-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 12px; }
+
+footer { padding: 60px 24px; background: #fff; border-top: 1px solid #e5e5e5; text-align: center; }
+.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 14px; color: #333; margin-bottom: 20px; }
+.copyright { font-size: 12px; color: #999; }
+/* === 首頁輪播專用樣式 (修正版) === */
+
+/* 改用新的 class 名稱，避免影響商品頁的排版 */
+.home-slideshow-container {
+    max-width: 1000px; /* 寬度稍微縮小 */
+    position: relative;
+    margin: 30px auto; /* 上下留白 */
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* 內部必須維持 .mySlides 這個名稱讓 JS 抓取，但我們用父層來鎖定樣式 */
+.home-slideshow-container .mySlides {
+    display: none;
+    animation: fade 1.5s;
+}
+
+/* 圖片設定：高度改小為 300px，看起來不會那麼巨大 */
+.home-slideshow-container .mySlides img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover;
+    border-radius: 12px;
+    vertical-align: middle;
+}
+
+/* 淡入動畫 */
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* 左右按鈕：鎖定在首頁輪播內 */
+.home-slideshow-container .prev, 
+.home-slideshow-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white; /* 首頁圖片通常深色，用白色箭頭 */
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.home-slideshow-container .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.home-slideshow-container .prev {
+    left: 0;
+}
+
+.home-slideshow-container .prev:hover, 
+.home-slideshow-container .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* 圓點容器：浮在圖片下方 */
+.home-dot-container {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    z-index: 5;
+}
+
+/* 圓點樣式 */
+.home-slideshow-container .dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* 激活狀態 */
+.home-slideshow-container .active, 
+.home-slideshow-container .dot:hover {
+    background-color: #fff;
+}
+/* === 滑鼠移過圖片時的放大效果 === */
+.home-slideshow-container .mySlides img {
+    transition: transform 0.5s ease; /* 設定動畫時間 */
+}
+
+.home-slideshow-container .mySlides:hover img {
+    transform: scale(1.05); /* 放大 1.05 倍 */
+}
+/* === 撰寫評論區塊樣式 === */
+.write-review-panel {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 30px; /* 與下方評論列表拉開距離 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-width: 800px; /* 限制寬度比較好看 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.write-review-panel h3 {
+    margin-bottom: 15px;
+    color: #333;
+    border-left: 4px solid #ff4d4f; /* 左邊紅線裝飾 */
+    padding-left: 10px;
+}
+
+.write-review-panel .form-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.write-review-panel input, 
+.write-review-panel select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.write-review-panel input {
+    flex: 1; /* 讓名字欄位自動填滿 */
+}
+
+.write-review-panel textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    resize: vertical; /* 允許垂直拉伸 */
+    font-family: inherit;
+}
+
+.submit-review-btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.submit-review-btn:hover {
+    background: #ff4d4f; /* 滑鼠移過去變紅色 */
+}
+
+/* 手機版適應 */
+@media (max-width: 600px) {
+    .write-review-panel .form-group {
+        flex-direction: column;
+    }
+}

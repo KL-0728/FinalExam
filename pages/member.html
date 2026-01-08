@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心 - Dingnow</title>
+    <link rel="stylesheet" href="../asset/style.css">
+    <link rel="stylesheet" href="../asset/member.css">
+</head>
+
+<body>
+
+    <header></header>
+
+    <div class="container member-container">
+        <aside class="member-sidebar">
+            <div class="user-profile-summary">
+                <div class="avatar">
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User">
+                </div>
+                <div class="user-name">楊小光</div>
+                <div class="user-level">黃金會員</div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active">會員中心</a>
+                <a href="#">我的收藏</a>
+                <a href="#">優惠券 <span class="badge">2</span></a>
+                <a href="#">帳號設定</a>
+                <a href="../index.html" class="logout-btn" onclick="alert('已登出')">登出</a>
+            </nav>
+        </aside>
+
+        <main class="member-content">
+            <section class="content-card info-card">
+                <h2 class="card-title">會員資訊</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>電子信箱</label>
+                        <span>dingnow_student@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <label>手機號碼</label>
+                        <span>0912-345-678</span>
+                    </div>
+                    <div class="info-item">
+                        <label>生日</label>
+                        <span>2002/05/20</span>
+                    </div>
+                    <div class="info-item">
+                        <label>註冊日期</label>
+                        <span>2023/12/25</span>
+                    </div>
+                    <div class="info-item full-width">
+                        <label>收件地址</label>
+                        <span>太陽系地球村</span>
+                    </div>
+                </div>
+                <button class="edit-btn">編輯資料</button>
+            </section>
+
+            <section class="content-card order-history">
+                <h2 class="card-title">近期訂單</h2>
+
+                <div class="order-item">
+                    <div class="order-header">
+                        <span class="order-id">訂單編號 #2024060401</span>
+                        <span class="order-status completed">已完成</span>
+                    </div>
+                    <div class="order-body">
+                        <div class="product-preview">
+                            <img src="../img/product/pad_pic1.png" alt="平板">
+                            <div class="product-details">
+                                <div class="name">UB Titan X 10.1吋平板電腦</div>
+                                <div class="spec">顏色: 白色</div>
+                            </div>
+                        </div>
+                        <div class="order-price">NT$ 7,788</div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="order-date">2024-06-01</span>
+                        <button class="reorder-btn">再次購買</button>
+                    </div>
+                </div>
+
+                <div class="order-item">
+                    <div class="order-header">
+                        <span class="order-id">訂單編號 #2024052099</span>
+                        <span class="order-status shipping">運送中</span>
+                    </div>
+                    <div class="order-body">
+                        <div class="product-preview">
+                            <img src="../img/product/buds_pic1.png" alt="耳機">
+                            <div class="product-details">
+                                <div class="name">DingSpace靜界 藍牙耳機</div>
+                                <div class="spec">顏色: 藍色</div>
+                            </div>
+                        </div>
+                        <div class="order-price">NT$ 5,899</div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="order-date">2024-06-03</span>
+                        <button class="track-btn">追蹤包裹</button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <footer></footer>
+
+    <script src="../asset/layout.js"></script>
+</body>
+
+</html>
